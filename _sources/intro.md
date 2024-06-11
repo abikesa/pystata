@@ -2,6 +2,12 @@
 
 Let's ensure we cover all necessary steps, including configuring VSCode to work seamlessly with your virtual environment and the Jupyter kernels. Here’s a detailed, step-by-step guide:
 
+```bash
+export STATA_KERNEL_STATA_PATH=/Applications/Stata/StataMP.app/Contents/MacOS/stata-mp
+pip install --upgrade stata_kernel ipykernel `traitlets`
+
+```
+
 ### Step-by-Step Guide to Set Up Stata Kernel in Jupyter Notebooks with VSCode
 
 #### Step 1: Recreate Virtual Environment
@@ -26,7 +32,7 @@ Let's ensure we cover all necessary steps, including configuring VSCode to work 
    ```bash
    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
    python get-pip.py
-   ```
+   ````
 
 #### Step 2: Install Necessary Packages
 
