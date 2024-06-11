@@ -183,6 +183,7 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="notebooks.html">Stata</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Step-by-Step Guide to Set Up Stata Kernel in Jupyter Notebooks</a></li>
 
 
@@ -405,6 +406,10 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="welcome-to-stata">
 <h1>Welcome to Stata<a class="headerlink" href="#welcome-to-stata" title="Link to this heading">#</a></h1>
 <p>Let’s ensure we cover all necessary steps, including configuring VSCode to work seamlessly with your virtual environment and the Jupyter kernels. Here’s a detailed, step-by-step guide:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">STATA_KERNEL_STATA_PATH</span><span class="o">=</span>/Applications/Stata/StataMP.app/Contents/MacOS/stata-mp
+pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>stata_kernel<span class="w"> </span>ipykernel<span class="w"> </span><span class="sb">`</span>traitlets<span class="sb">`</span>
+</pre></div>
+</div>
 <section id="step-by-step-guide-to-set-up-stata-kernel-in-jupyter-notebooks-with-vscode">
 <h2>Step-by-Step Guide to Set Up Stata Kernel in Jupyter Notebooks with VSCode<a class="headerlink" href="#step-by-step-guide-to-set-up-stata-kernel-in-jupyter-notebooks-with-vscode" title="Link to this heading">#</a></h2>
 <section id="step-1-recreate-virtual-environment">
@@ -566,6 +571,7 @@ By following these steps, you should be able to set up the Stata kernel in Jupyt
 <li class="toctree-l1"><a class="reference internal" href="markdown.html#step-4-test-the-setup">Step 4: Test the Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown.html#summary">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks.html">Stata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html#setup-stata-kernel-sh"><code class="docutils literal notranslate"><span class="pre">./setup_stata_kernel.sh</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Step-by-Step Guide to Set Up Stata Kernel in Jupyter Notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html#summary">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html#additional-notes">Additional Notes</a></li>
