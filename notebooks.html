@@ -570,13 +570,13 @@ document.write(`
 </li>
 </ol>
 <p>Following these steps should help ensure that the Stata kernel is properly installed and recognized in VSCode. If you encounter any specific errors or issues, please provide the details so I can assist you further.</p>
-<div class="cell tag_hide-input docutils container">
+<div class="cell tag_hide-input tag_hide-output docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
 <span class="collapsed">Show code cell source</span>
 <span class="expanded">Hide code cell source</span>
 </summary>
-<div class="cell_input docutils container">
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">qui</span> {
 <span class="k">capture log close</span> 
 <span class="k">log</span> using jamascript<span class="m">.</span>log,<span class="k"> replace</span> 
@@ -699,6 +699,11 @@ export delimited using <span class="o">~/</span>documents<span class="o">/</span
 </div>
 </div>
 </details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        Failure _d: rSMGJcEdF_d==2
 </pre></div>
@@ -821,6 +826,7 @@ export delimited using <span class="o">~/</span>documents<span class="o">/</span
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <p><img alt="" src="_images/jamascript.png" /></p>
 </section>
