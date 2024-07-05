@@ -12,6 +12,8 @@ kernelspec:
   name: python3
 ---
 
+# 3 Jupyter
+
 Let's set up the Stata kernel in Jupyter Notebooks. We will use the `stata_kernel` package, which provides a Jupyter kernel for Stata.
 
 ### Step-by-Step Guide to Set Up Stata Kernel in Jupyter Notebooks
