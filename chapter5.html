@@ -385,7 +385,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-3-load-data">Block 3: Load Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-4-initial-data-exploration">Block 4: Initial Data Exploration</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-5-data-cleaning-and-adjustment">Block 5: Data Cleaning and Adjustment</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-6-survival-analysis-setup">Block 6: Survival Analysis Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-6-mortality-analysis-setup">Block 6: Mortality Analysis Setup</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-7-generate-kaplan-meier-estimates">Block 7: Generate Kaplan-Meier Estimates</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-8-summarize-failure-rates">Block 8: Summarize Failure Rates</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-9-kaplan-meier-survival-plot">Block 9: Kaplan-Meier Survival Plot</a></li>
@@ -414,26 +414,6 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Close any existing log files</span>
 <span class="k">capture log close</span> 
-
-<span class="c1">// Open a new log file to record the output</span>
-<span class="k">log</span> using jamascript<span class="m">.</span>log,<span class="k"> replace</span> 
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------------------------------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      name:  &lt;unnamed&gt;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       log:  /Users/apollo/Documents/Melody/pystata/jamascript.log
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  log type:  text
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> opened on:   5 Jul 2024, 14:12:25
 </pre></div>
 </div>
 </div>
@@ -455,12 +435,30 @@ document.write(`
 <h2>Block 3: Load Data<a class="headerlink" href="#block-3-load-data" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Load the dataset from the repository</span>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Open a new log file to record the output</span>
+<span class="k">log</span> using jamascript<span class="m">.</span>log,<span class="k"> replace</span> 
+
+<span class="c1">// Load the dataset from the repository</span>
 <span class="k">use</span> <span class="vg">${repo}</span>esrdRisk_t02tT,<span class="k"> clear</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      name:  &lt;unnamed&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       log:  /Users/apollo/Documents/Melody/pystata/jamascript.log
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  log type:  text
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> opened on:   5 Jul 2024, 16:37:04
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Live Kidney Donors + NHANES III Nondonors, Unmatched time_tT + CMS)
 </pre></div>
 </div>
@@ -473,6 +471,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Display the distribution of the &#39;donor&#39; variable</span>
 <span class="k">tab</span> donor rSMGJcEdF_d
+<span class="k">codebook</span> rSMGJcEdF_d
 
 <span class="c1">// Generate a new variable &#39;entry&#39; based on the &#39;rSMGJcEdF_t0&#39; variable</span>
 <span class="k">g</span> entry = rSMGJcEdF_t0
@@ -504,43 +503,269 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               Total |   108,448        270      4,939 |   113,657 
 </pre></div>
 </div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rSMGJcEdF_d                                                          (unlabeled)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                  Type: Numeric (byte)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Label: Neph2esrd_d
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Range: [0,2]                         Units: 1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         Unique values: 3                         Missing .: 0/113,657
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Tabulation: Freq.   Numeric  Label
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                      108,448         0  Censored
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                          270         1  ESRD
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        4,939         2  Died
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
 </div>
 <iframe src="./jamascript-m.pdf" width="100%" height="600" style="borders:none"></iframe>
-<iframe src="./jamascript-e.pdf" width="100%" height="600" style="borders:none"></iframe><div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-</section>
+<iframe src="./jamascript-e.pdf" width="100%" height="600" style="borders:none"></iframe></section>
 <section id="block-5-data-cleaning-and-adjustment">
 <h2>Block 5: Data Cleaning and Adjustment<a class="headerlink" href="#block-5-data-cleaning-and-adjustment" title="Link to this heading">#</a></h2>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Linkage for donors after 2011 is untrustworthy</span>
-<span class="k">replace</span> rSMGJcEdF_d = <span class="m">0</span><span class="k"> if</span> rSMGJcEdF_tT <span class="o">&gt;</span><span class="k"> d</span>(31dec2011)
-<span class="k">replace</span> rSMGJcEdF_tT =<span class="k"> d</span>(31dec2011)<span class="k"> if</span> rSMGJcEdF_tT <span class="o">&gt;</span><span class="k"> d</span>(31dec2011)
-
-<span class="c1">// Linkage before 1994 is untrustworthy</span>
-<span class="k">replace</span> entry =<span class="k"> d</span>(01jan1994)<span class="k"> if</span> entry <span class="o">&lt;</span><span class="k"> d</span>(01jan1994) <span class="o">&amp;</span> rSMGJcEdF_tT <span class="o">&gt;</span><span class="k"> d</span>(01jan1994)
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">codebook</span> donor
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>donor                                                                (unlabeled)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                  Type: Numeric (byte)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Label: Donor
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Range: [1,3]                         Units: 1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         Unique values: 3                         Missing .: 0/113,657
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Tabulation: Freq.   Numeric  Label
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                       96,217         1  Donor
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        9,364         2  HealthyNondonor
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        8,076         3  NotSoHealthyNondonor
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Linkage for donors after 2011 is untrustworthy</span>
+<span class="k">replace</span> rSMGJcEdF_d = <span class="m">0</span><span class="k"> if</span> rSMGJcEdF_tT <span class="o">&gt;</span><span class="k"> d</span>(31dec2011) <span class="o">&amp;</span> donor <span class="o">==</span> <span class="m">1</span>
+<span class="k">replace</span> rSMGJcEdF_tT =<span class="k"> d</span>(31dec2011)<span class="k"> if</span> rSMGJcEdF_tT <span class="o">&gt;</span><span class="k"> d</span>(31dec2011) <span class="o">&amp;</span> donor <span class="o">==</span> <span class="m">1</span>
+
+<span class="c1">// Linkage before 1994 is untrustworthy</span>
+<span class="k">replace</span> entry =<span class="k"> d</span>(01jan1994)<span class="k"> if</span> entry <span class="o">&lt;</span><span class="k"> d</span>(01jan1994) <span class="o">&amp;</span> rSMGJcEdF_tT <span class="o">&gt;</span><span class="k"> d</span>(01jan1994) <span class="o">&amp;</span> donor <span class="o">==</span> <span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2 real changes made)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(95,132 real changes made)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0 real changes made)
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="block-6-survival-analysis-setup">
-<h2>Block 6: Survival Analysis Setup<a class="headerlink" href="#block-6-survival-analysis-setup" title="Link to this heading">#</a></h2>
+<section id="block-6-mortality-analysis-setup">
+<h2>Block 6: Mortality Analysis Setup<a class="headerlink" href="#block-6-mortality-analysis-setup" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set up the survival-time data</span>
 <span class="k">stset</span> rSMGJcEdF_tT, origin(rSMGJcEdF_t0) entry(entry) fail(rSMGJcEdF_d<span class="o">==</span><span class="m">2</span>) scale(<span class="m">365.25</span>)
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Survival-time data settings
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         Failure event: rSMGJcEdF_d==2
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observed time interval: (origin, rSMGJcEdF_tT]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     Enter on or after: time entry
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     Exit on or before: failure
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     Time for analysis: (time-origin)/365.25
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                Origin: time rSMGJcEdF_t0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    113,657  total observations
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          0  exclusions
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    113,657  observations remaining, representing
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      4,937  failures in single-record/single-failure data
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 999,633.48  total analysis time at risk and under observation
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                At risk from t =         0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                     Earliest observed entry t =         0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                          Last observed exit t =  18.18207
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="block-7-generate-kaplan-meier-estimates">
 <h2>Block 7: Generate Kaplan-Meier Estimates<a class="headerlink" href="#block-7-generate-kaplan-meier-estimates" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Generate Kaplan-Meier survival estimates and save the results</span>
 <span class="k">sts list</span>, fail<span class="k"> by</span>(donor) at(<span class="m">5</span> <span class="m">12</span> <span class="m">15</span>) saving(km,<span class="k"> replace</span>)
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         Failure _d: rSMGJcEdF_d==2
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Analysis time _t: (rSMGJcEdF_tT-origin)/365.25
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>             Origin: time rSMGJcEdF_t0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Enter on or after: time entry
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Kaplan–Meier failure function
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>By variable: donor
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              Beg.              Failure      Std.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Time     total     Fail    function     error     [95% conf. int.]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Donor 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       5     66051      299      0.0038    0.0002     0.0034    0.0042
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      12     22000      500      0.0162    0.0006     0.0151    0.0175
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      15      9068      133      0.0247    0.0010     0.0229    0.0267
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HealthyNondonor 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       5      9184      177      0.0189    0.0014     0.0163    0.0219
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      12      8741      434      0.0653    0.0026     0.0605    0.0705
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      15      4839      166      0.0873    0.0030     0.0815    0.0934
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NotSoHealthyNondonor 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       5      6850     1157      0.1442    0.0039     0.1367    0.1520
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      12      5163     1608      0.3463    0.0053     0.3360    0.3569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      15      2150      463      0.4245    0.0059     0.4131    0.4361
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: Failure function is calculated over full data and evaluated at
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      indicated times; it is not calculated from aggregates shown at left.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Only the donor results match <a class="reference external" href="https://abikesa.github.io/flow/_downloads/57876abeb3d25f47b41ed9b178f3d2c7/jamascript-m.pdf">Segev, JAMA, 2010</a> p. 961. The nondonors here are unmatched and so do not yield the same estimates from this paper</p>
+<p>A webApp is quick way to approximate these findings using the base-case of the “typical” donor as per Table 1, also on page 961. Namely, 40yo white female with some college education, BMI=28, SBP=120, no hypertension, no history of smoking cigarettes, creatinine 0.9 mg/dL, and eGFR 100 mL/min</p>
 </section>
 <section id="block-8-summarize-failure-rates">
 <h2>Block 8: Summarize Failure Rates<a class="headerlink" href="#block-8-summarize-failure-rates" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">preserve</span>
 <span class="k">    use</span> km,<span class="k"> clear</span>
 <span class="k">    replace</span> failure = failure <span class="o">*</span> <span class="m">100</span>
@@ -577,44 +802,339 @@ document.write(`
 <span class="k">restore</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9 real changes made)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Variable |        Obs        Mean    Std. dev.       Min        Max
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------------+---------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     failure |          1     .375848           .    .375848    .375848
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Variable |        Obs        Mean    Std. dev.       Min        Max
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------------+---------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     failure |          1    1.623302           .   1.623302   1.623302
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Variable |        Obs        Mean    Std. dev.       Min        Max
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------------+---------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     failure |          1    2.468609           .   2.468609   2.468609
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Variable |        Obs        Mean    Std. dev.       Min        Max
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------------+---------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     failure |          1    1.890705           .   1.890705   1.890705
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Variable |        Obs        Mean    Std. dev.       Min        Max
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------------+---------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     failure |          1    6.528533           .   6.528533   6.528533
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Variable |        Obs        Mean    Std. dev.       Min        Max
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------------+---------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     failure |          1    8.728806           .   8.728806   8.728806
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Variable |        Obs        Mean    Std. dev.       Min        Max
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------------+---------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     failure |          1    14.41562           .   14.41562   14.41562
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Variable |        Obs        Mean    Std. dev.       Min        Max
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------------+---------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     failure |          1    34.63395           .   34.63395   34.63395
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Variable |        Obs        Mean    Std. dev.       Min        Max
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------------+---------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     failure |          1    42.44794           .   42.44794   42.44794
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="block-9-kaplan-meier-survival-plot">
 <h2>Block 9: Kaplan-Meier Survival Plot<a class="headerlink" href="#block-9-kaplan-meier-survival-plot" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create a Kaplan-Meier survival plot with risk tables</span>
-<span class="k">sts graph</span>,<span class="k"> by</span>(donor) fail per(<span class="m">100</span>) xlab(<span class="m">0</span>(<span class="m">3</span>)<span class="m">15</span>) ylab(<span class="m">0</span>(<span class="m">10</span>)<span class="m">40</span>,<span class="k"> format</span>(<span class="nx">%2.0f</span>)) tmax(<span class="m">15</span>) risktable(, color(stc1) group(<span class="m">1</span>)<span class="k"> order</span>(<span class="m">3</span> <span class="s">&quot; &quot;</span> <span class="m">2</span> <span class="s">&quot; &quot;</span> <span class="m">1</span> <span class="s">&quot; &quot;</span>) ti(<span class="s">&quot;#&quot;</span>)) risktable(, color(stc2) group(<span class="m">2</span>)) risktable(, color(stc3) group(<span class="m">3</span>)) legend(on ring(<span class="m">0</span>) pos(<span class="m">11</span>)<span class="k"> order</span>(<span class="m">3</span> <span class="m">2</span> <span class="m">1</span>)<span class="k"> lab</span>(<span class="m">3</span> <span class="s">&quot;General population&quot;</span>)<span class="k"> lab</span>(<span class="m">2</span> <span class="s">&quot;Healthy nondonor&quot;</span>)<span class="k"> lab</span>(<span class="m">1</span> <span class="s">&quot;Living donor&quot;</span>)) ti(<span class="s">&quot;Morte&quot;</span>) text(<span class="nv">`don5y&#39;</span> <span class="m">5</span> <span class="s">&quot;</span><span class="nv">`don5y&#39;</span><span class="s">%&quot;</span>, col(stc1)) text(<span class="nv">`don12y&#39;</span> <span class="m">12</span> <span class="s">&quot;</span><span class="nv">`don12y&#39;</span><span class="s">%&quot;</span>, col(stc1)) text(<span class="nv">`don15y&#39;</span> <span class="m">15</span> <span class="s">&quot;</span><span class="nv">`don15y&#39;</span><span class="s">%&quot;</span>, col(stc1)) text(<span class="nv">`hnd5y&#39;</span> <span class="m">5</span> <span class="s">&quot;</span><span class="nv">`hnd5y&#39;</span><span class="s">%&quot;</span>, col(stc2)) text(<span class="nv">`hnd12y&#39;</span> <span class="m">12</span> <span class="s">&quot;</span><span class="nv">`hnd12y&#39;</span><span class="s">%&quot;</span>, col(stc2)) text(<span class="nv">`hnd15y&#39;</span> <span class="m">15</span> <span class="s">&quot;</span><span class="nv">`hnd15y&#39;</span><span class="s">%&quot;</span>, col(stc2)) text(<span class="nv">`gpop5y&#39;</span> <span class="m">5</span> <span class="s">&quot;</span><span class="nv">`gpop5y&#39;</span><span class="s">%&quot;</span>, col(stc3)) text(<span class="nv">`gpop12y&#39;</span> <span class="m">12</span> <span class="s">&quot;</span><span class="nv">`gpop12y&#39;</span><span class="s">%&quot;</span>, col(stc3)) text(<span class="nv">`gpop15y&#39;</span> <span class="m">15</span> <span class="s">&quot;</span><span class="nv">`gpop15y&#39;</span><span class="s">%&quot;</span>, col(stc3))
+<span class="k">sts graph</span>, <span class="cs">///</span>
+<span class="k">   by</span>(donor) <span class="cs">///</span>
+   fail per(<span class="m">100</span>) <span class="cs">///</span>
+   xlab(<span class="m">0</span>(<span class="m">3</span>)<span class="m">15</span>) <span class="cs">///</span>
+   ylab(<span class="m">0</span>(<span class="m">10</span>)<span class="m">40</span>,<span class="k"> format</span>(<span class="nx">%2.0f</span>)) <span class="cs">///</span>
+   tmax(<span class="m">15</span>) <span class="cs">///</span>
+   risktable(, color(stc1) group(<span class="m">1</span>)<span class="k"> order</span>(<span class="m">3</span> <span class="s">&quot; &quot;</span> <span class="m">2</span> <span class="s">&quot; &quot;</span> <span class="m">1</span> <span class="s">&quot; &quot;</span>) ti(<span class="s">&quot;#&quot;</span>)) <span class="cs">///</span>
+   risktable(, color(stc2) group(<span class="m">2</span>)) risktable(, color(stc3) group(<span class="m">3</span>)) <span class="cs">///</span>
+   legend(on ring(<span class="m">0</span>) pos(<span class="m">11</span>)<span class="k"> order</span>(<span class="m">3</span> <span class="m">2</span> <span class="m">1</span>)<span class="k"> lab</span>(<span class="m">3</span> <span class="s">&quot;General population&quot;</span>)<span class="k"> lab</span>(<span class="m">2</span> <span class="s">&quot;Healthy nondonor&quot;</span>)<span class="k"> lab</span>(<span class="m">1</span> <span class="s">&quot;Living donor&quot;</span>)) <span class="cs">///</span>
+   ti(<span class="s">&quot;Morte&quot;</span>) text(<span class="nv">`don5y&#39;</span> <span class="m">5</span> <span class="s">&quot;</span><span class="nv">`don5y&#39;</span><span class="s">%&quot;</span>, col(stc1)) text(<span class="nv">`don12y&#39;</span> <span class="m">12</span> <span class="s">&quot;</span><span class="nv">`don12y&#39;</span><span class="s">%&quot;</span>, col(stc1)) <span class="cs">///</span>
+   text(<span class="nv">`don15y&#39;</span> <span class="m">15</span> <span class="s">&quot;</span><span class="nv">`don15y&#39;</span><span class="s">%&quot;</span>, col(stc1)) <span class="cs">///</span>
+   text(<span class="nv">`hnd5y&#39;</span> <span class="m">5</span> <span class="s">&quot;</span><span class="nv">`hnd5y&#39;</span><span class="s">%&quot;</span>, col(stc2)) <span class="cs">///</span>
+   text(<span class="nv">`hnd12y&#39;</span> <span class="m">12</span> <span class="s">&quot;</span><span class="nv">`hnd12y&#39;</span><span class="s">%&quot;</span>, col(stc2)) <span class="cs">///</span>
+   text(<span class="nv">`hnd15y&#39;</span> <span class="m">15</span> <span class="s">&quot;</span><span class="nv">`hnd15y&#39;</span><span class="s">%&quot;</span>, col(stc2)) <span class="cs">///</span>
+   text(<span class="nv">`gpop5y&#39;</span> <span class="m">5</span> <span class="s">&quot;</span><span class="nv">`gpop5y&#39;</span><span class="s">%&quot;</span>, col(stc3)) <span class="cs">///</span>
+   text(<span class="nv">`gpop12y&#39;</span> <span class="m">12</span> <span class="s">&quot;</span><span class="nv">`gpop12y&#39;</span><span class="s">%&quot;</span>, col(stc3)) <span class="cs">///</span>
+   text(<span class="nv">`gpop15y&#39;</span> <span class="m">15</span> <span class="s">&quot;</span><span class="nv">`gpop15y&#39;</span><span class="s">%&quot;</span>, col(stc3))
+
+<span class="k">graph save</span> pilot,<span class="k"> replace</span> 
+<span class="k">graph</span> export <span class="vg">${dir}</span><span class="o">/</span>pilot<span class="m">.</span>png,<span class="k"> replace</span> 
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         Failure _d: rSMGJcEdF_d==2
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Analysis time _t: (rSMGJcEdF_tT-origin)/365.25
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>             Origin: time rSMGJcEdF_t0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Enter on or after: time entry
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file pilot.gph saved
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file ~/documents/melody/local/pilot.png written in PNG format
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="block-10-export-graph">
 <h2>Block 10: Export Graph<a class="headerlink" href="#block-10-export-graph" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Export the survival plot as a PNG file</span>
 <span class="k">graph</span> export <span class="vg">${dir}</span><span class="o">/</span>jamascript<span class="m">.</span>png,<span class="k"> replace</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file ~/documents/melody/local/jamascript.png written in PNG format
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="block-11-save-processed-data">
 <h2>Block 11: Save Processed Data<a class="headerlink" href="#block-11-save-processed-data" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Keep relevant variables for further analysis</span>
 <span class="k">keep</span> _<span class="o">*</span> entry age_t0 female race donor
 <span class="k">rename</span> age_t0 age
-
-<span class="c1">// Save the processed dataset</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Save the processed dataset</span>
 <span class="k">save</span> <span class="vg">${dir}</span><span class="o">//</span>jamascript<span class="m">.</span>dta,<span class="k"> replace</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file ~/documents/melody/local//jamascript.dta saved
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="block-12-cox-proportional-hazards-model">
 <h2>Block 12: Cox Proportional Hazards Model<a class="headerlink" href="#block-12-cox-proportional-hazards-model" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Fit a Cox proportional hazards model</span>
 <span class="k">noi stcox</span> i<span class="m">.</span>donor, basesurv(s0)
-
-<span class="c1">// List the baseline survival estimates</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         Failure _d: rSMGJcEdF_d==2
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Analysis time _t: (rSMGJcEdF_tT-origin)/365.25
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>             Origin: time rSMGJcEdF_t0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Enter on or after: time entry
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 0:  Log likelihood = -54332.522
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 1:  Log likelihood =  -52993.14
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 2:  Log likelihood = -51472.516
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 3:  Log likelihood = -49543.907
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 4:  Log likelihood =  -49520.68
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 5:  Log likelihood = -49520.548
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 6:  Log likelihood = -49520.548
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Refining estimates:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 0:  Log likelihood = -49520.548
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cox regression with Breslow method for ties
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No. of subjects =     113,657                          Number of obs = 113,657
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No. of failures =       4,937
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time at risk    = 999,633.484
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                       LR chi2(2)    = 9623.95
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log likelihood = -49520.548                            Prob &gt; chi2   =  0.0000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------------------------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           _t | Haz. ratio   Std. err.      z    P&gt;|z|     [95% conf. interval]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------+----------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HealthyNon~r  |   4.341779   .2130915    29.92   0.000     3.943586    4.780178
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NotSoHealt~r  |   26.88098   1.007964    87.78   0.000     24.97625    28.93096
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------------------------------------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// List the baseline survival estimates</span>
 <span class="k">noi list</span> s0 _t donor<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">10</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     +-------------------------------+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |        s0          _t   donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |-------------------------------|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1. | .98566928   11.277207   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2. | .99256749   6.8281999   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  3. | .99351642   6.1711157   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  4. | .99402483   5.6919918   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5. | .98475171   11.816564   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |-------------------------------|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  6. | .99934972   .90622861   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7. | .98705221   10.472279   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  8. |  .9879412   9.8754278   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  9. | .98766713   10.064339   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10. | .99994059   .08761123   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     +-------------------------------+
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="block-13-save-baseline-survival-and-coefficients">
 <h2>Block 13: Save Baseline Survival and Coefficients<a class="headerlink" href="#block-13-save-baseline-survival-and-coefficients" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define matrix &#39;b&#39; with model coefficients</span>
 <span class="k">matrix</span> define b =<span class="k"> e</span>(b)
 
@@ -628,8 +1148,66 @@ document.write(`
 <span class="c1">// Save baseline survival estimates</span>
 <span class="k">save</span> <span class="vg">${dir}</span><span class="o">/</span>s0<span class="m">.</span>dta,<span class="k"> replace</span>
 export delimited using <span class="vg">${dir}</span><span class="o">/</span>s0<span class="m">.</span>csv,<span class="k"> replace</span>
-
-<span class="c1">// Save model coefficients</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     +-----------------------+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |        _t          s0 |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |-----------------------|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1. | .00273785   .99998587 |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2. | .00273785   .99998587 |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  3. | .00273785   .99998587 |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  4. | .00273785   .99998587 |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5. | .00273785   .99998587 |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |-----------------------|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  6. | .00273785   .99998587 |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7. | .00273785   .99998587 |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  8. | .00273785   .99998587 |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  9. | .00273785   .99998587 |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10. | .00273785   .99998587 |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     +-----------------------+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file ~/documents/melody/local/s0.dta saved
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file /Users/apollo/documents/melody/local/s0.csv saved
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Save model coefficients</span>
 <span class="k">matrix</span> beta =<span class="k"> e</span>(b)
 <span class="k">svmat</span> beta
 <span class="k">keep</span> beta<span class="o">*</span>
@@ -639,14 +1217,63 @@ export delimited using <span class="vg">${dir}</span><span class="o">/</span>s0<
 export delimited using <span class="vg">${dir}</span><span class="o">/</span>b<span class="m">.</span>csv,<span class="k"> replace</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(113,656 observations deleted)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     +-----------------------------+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     | beta1      beta2      beta3 |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |-----------------------------|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1. |     0   1.468284   3.291419 |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     +-----------------------------+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file ~/documents/melody/local/b.dta saved
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file /Users/apollo/documents/melody/local/b.csv saved
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="block-14-close-log-file">
 <h2>Block 14: Close Log File<a class="headerlink" href="#block-14-close-log-file" title="Link to this heading">#</a></h2>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Close the log file</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span> 
+<span class="c1">// Close the log file</span>
 <span class="k">log close</span>
 </pre></div>
 </div>
-<p>You can run these blocks sequentially in your Jupyter Notebook with the Stata kernel. Each block should perform a distinct part of the analysis, making it easier to debug and understand the workflow.</p>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      name:  &lt;unnamed&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       log:  /Users/apollo/Documents/Melody/pystata/jamascript.log
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  log type:  text
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> closed on:   5 Jul 2024, 16:37:07
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------------------------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -710,7 +1337,7 @@ export delimited using <span class="vg">${dir}</span><span class="o">/</span>b<s
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-3-load-data">Block 3: Load Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-4-initial-data-exploration">Block 4: Initial Data Exploration</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-5-data-cleaning-and-adjustment">Block 5: Data Cleaning and Adjustment</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-6-survival-analysis-setup">Block 6: Survival Analysis Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-6-mortality-analysis-setup">Block 6: Mortality Analysis Setup</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-7-generate-kaplan-meier-estimates">Block 7: Generate Kaplan-Meier Estimates</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-8-summarize-failure-rates">Block 8: Summarize Failure Rates</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-9-kaplan-meier-survival-plot">Block 9: Kaplan-Meier Survival Plot</a></li>
