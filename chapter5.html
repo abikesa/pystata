@@ -1,0 +1,776 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>5 Annotation &#8212; Pystata</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter5';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="4 Python" href="chapter4.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://abikesa.github.io/flow/_images/jamascript.png" class="logo__image only-light" alt="Pystata - Home"/>
+    <script>document.write(`<img src="https://abikesa.github.io/flow/_images/jamascript.png" class="logo__image only-dark" alt="Pystata - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    0 Welcome
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapter1.html">1 Kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter2.html">2 Stata</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="chapter3.html">3 Jupyter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter4.html">4 Python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5 Annotation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapter5.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chapter5.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>5 Annotation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-1-setup-and-logging">Block 1: Setup and Logging</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-2-define-globals">Block 2: Define Globals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-3-load-data">Block 3: Load Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-4-initial-data-exploration">Block 4: Initial Data Exploration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-5-data-cleaning-and-adjustment">Block 5: Data Cleaning and Adjustment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-6-survival-analysis-setup">Block 6: Survival Analysis Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-7-generate-kaplan-meier-estimates">Block 7: Generate Kaplan-Meier Estimates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-8-summarize-failure-rates">Block 8: Summarize Failure Rates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-9-kaplan-meier-survival-plot">Block 9: Kaplan-Meier Survival Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-10-export-graph">Block 10: Export Graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-11-save-processed-data">Block 11: Save Processed Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-12-cox-proportional-hazards-model">Block 12: Cox Proportional Hazards Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-13-save-baseline-survival-and-coefficients">Block 13: Save Baseline Survival and Coefficients</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-14-close-log-file">Block 14: Close Log File</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="annotation">
+<h1>5 Annotation<a class="headerlink" href="#annotation" title="Link to this heading">#</a></h1>
+<p>Sure, I’ll break down the Stata script into smaller code blocks with notes so you can run them separately in a Jupyter Notebook with the Stata kernel.</p>
+<section id="block-1-setup-and-logging">
+<h2>Block 1: Setup and Logging<a class="headerlink" href="#block-1-setup-and-logging" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Close any existing log files</span>
+<span class="k">capture log close</span> 
+
+<span class="c1">// Open a new log file to record the output</span>
+<span class="k">log</span> using jamascript<span class="m">.</span>log,<span class="k"> replace</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      name:  &lt;unnamed&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       log:  /Users/apollo/Documents/Melody/pystata/jamascript.log
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  log type:  text
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> opened on:   5 Jul 2024, 14:12:25
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="block-2-define-globals">
+<h2>Block 2: Define Globals<a class="headerlink" href="#block-2-define-globals" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set global macros for the repository URL and local directory path</span>
+<span class="k">global</span> repo https:<span class="o">//</span>github<span class="m">.</span>com<span class="o">/</span>muzaale<span class="o">/</span>forum<span class="o">/</span>raw<span class="o">/</span>main<span class="o">/</span> 
+<span class="k">global dir</span> <span class="o">~/</span>documents<span class="o">/</span>melody<span class="o">/</span>local
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="block-3-load-data">
+<h2>Block 3: Load Data<a class="headerlink" href="#block-3-load-data" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Load the dataset from the repository</span>
+<span class="k">use</span> <span class="vg">${repo}</span>esrdRisk_t02tT,<span class="k"> clear</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Live Kidney Donors + NHANES III Nondonors, Unmatched time_tT + CMS)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="block-4-initial-data-exploration">
+<h2>Block 4: Initial Data Exploration<a class="headerlink" href="#block-4-initial-data-exploration" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Display the distribution of the &#39;donor&#39; variable</span>
+<span class="k">tab</span> donor rSMGJcEdF_d
+
+<span class="c1">// Generate a new variable &#39;entry&#39; based on the &#39;rSMGJcEdF_t0&#39; variable</span>
+<span class="k">g</span> entry = rSMGJcEdF_t0
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                     |           rSMGJcEdF_d
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               donor |  Censored       ESRD       Died |     Total
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------+---------------------------------+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               Donor |    95,184         99        934 |    96,217 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     HealthyNondonor |     8,570         17        777 |     9,364 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NotSoHealthyNondonor |     4,694        154      3,228 |     8,076 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------+---------------------------------+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               Total |   108,448        270      4,939 |   113,657 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<iframe src="./jamascript-m.pdf" width="100%" height="600" style="borders:none"></iframe>
+<iframe src="./jamascript-e.pdf" width="100%" height="600" style="borders:none"></iframe><div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+<section id="block-5-data-cleaning-and-adjustment">
+<h2>Block 5: Data Cleaning and Adjustment<a class="headerlink" href="#block-5-data-cleaning-and-adjustment" title="Link to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Linkage for donors after 2011 is untrustworthy</span>
+<span class="k">replace</span> rSMGJcEdF_d = <span class="m">0</span><span class="k"> if</span> rSMGJcEdF_tT <span class="o">&gt;</span><span class="k"> d</span>(31dec2011)
+<span class="k">replace</span> rSMGJcEdF_tT =<span class="k"> d</span>(31dec2011)<span class="k"> if</span> rSMGJcEdF_tT <span class="o">&gt;</span><span class="k"> d</span>(31dec2011)
+
+<span class="c1">// Linkage before 1994 is untrustworthy</span>
+<span class="k">replace</span> entry =<span class="k"> d</span>(01jan1994)<span class="k"> if</span> entry <span class="o">&lt;</span><span class="k"> d</span>(01jan1994) <span class="o">&amp;</span> rSMGJcEdF_tT <span class="o">&gt;</span><span class="k"> d</span>(01jan1994)
+</pre></div>
+</div>
+</section>
+<section id="block-6-survival-analysis-setup">
+<h2>Block 6: Survival Analysis Setup<a class="headerlink" href="#block-6-survival-analysis-setup" title="Link to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set up the survival-time data</span>
+<span class="k">stset</span> rSMGJcEdF_tT, origin(rSMGJcEdF_t0) entry(entry) fail(rSMGJcEdF_d<span class="o">==</span><span class="m">2</span>) scale(<span class="m">365.25</span>)
+</pre></div>
+</div>
+</section>
+<section id="block-7-generate-kaplan-meier-estimates">
+<h2>Block 7: Generate Kaplan-Meier Estimates<a class="headerlink" href="#block-7-generate-kaplan-meier-estimates" title="Link to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Generate Kaplan-Meier survival estimates and save the results</span>
+<span class="k">sts list</span>, fail<span class="k"> by</span>(donor) at(<span class="m">5</span> <span class="m">12</span> <span class="m">15</span>) saving(km,<span class="k"> replace</span>)
+</pre></div>
+</div>
+</section>
+<section id="block-8-summarize-failure-rates">
+<h2>Block 8: Summarize Failure Rates<a class="headerlink" href="#block-8-summarize-failure-rates" title="Link to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">preserve</span>
+<span class="k">    use</span> km,<span class="k"> clear</span>
+<span class="k">    replace</span> failure = failure <span class="o">*</span> <span class="m">100</span>
+    
+    <span class="c1">// Summarize failure rates for living donors at 5, 12, and 15 years</span>
+<span class="k">    sum</span> failure<span class="k"> if</span> donor <span class="o">==</span> <span class="m">1</span> <span class="o">&amp;</span> time <span class="o">==</span> <span class="m">5</span>
+<span class="k">    local</span> don5y:<span class="k"> di</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(mean)
+<span class="k">    </span>
+<span class="k">    sum</span> failure<span class="k"> if</span> donor <span class="o">==</span> <span class="m">1</span> <span class="o">&amp;</span> time <span class="o">==</span> <span class="m">12</span>
+<span class="k">    local</span> don12y:<span class="k"> di</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(mean)
+<span class="k">    </span>
+<span class="k">    sum</span> failure<span class="k"> if</span> donor <span class="o">==</span> <span class="m">1</span> <span class="o">&amp;</span> time <span class="o">==</span> <span class="m">15</span>
+<span class="k">    local</span> don15y:<span class="k"> di</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(mean)
+
+    <span class="c1">// Summarize failure rates for healthy nondonors at 5, 12, and 15 years</span>
+<span class="k">    sum</span> failure<span class="k"> if</span> donor <span class="o">==</span> <span class="m">2</span> <span class="o">&amp;</span> time <span class="o">==</span> <span class="m">5</span>
+<span class="k">    local</span> hnd5y:<span class="k"> di</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(mean)
+<span class="k">    </span>
+<span class="k">    sum</span> failure<span class="k"> if</span> donor <span class="o">==</span> <span class="m">2</span> <span class="o">&amp;</span> time <span class="o">==</span> <span class="m">12</span>
+<span class="k">    local</span> hnd12y:<span class="k"> di</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(mean)
+<span class="k">    </span>
+<span class="k">    sum</span> failure<span class="k"> if</span> donor <span class="o">==</span> <span class="m">2</span> <span class="o">&amp;</span> time <span class="o">==</span> <span class="m">15</span>
+<span class="k">    local</span> hnd15y:<span class="k"> di</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(mean)
+
+    <span class="c1">// Summarize failure rates for the general population at 5, 12, and 15 years</span>
+<span class="k">    sum</span> failure<span class="k"> if</span> donor <span class="o">==</span> <span class="m">3</span> <span class="o">&amp;</span> time <span class="o">==</span> <span class="m">5</span>
+<span class="k">    local</span> gpop5y:<span class="k"> di</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(mean)
+<span class="k">    </span>
+<span class="k">    sum</span> failure<span class="k"> if</span> donor <span class="o">==</span> <span class="m">3</span> <span class="o">&amp;</span> time <span class="o">==</span> <span class="m">12</span>
+<span class="k">    local</span> gpop12y:<span class="k"> di</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(mean)
+<span class="k">    </span>
+<span class="k">    sum</span> failure<span class="k"> if</span> donor <span class="o">==</span> <span class="m">3</span> <span class="o">&amp;</span> time <span class="o">==</span> <span class="m">15</span>
+<span class="k">    local</span> gpop15y:<span class="k"> di</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(mean)
+<span class="k">restore</span>
+</pre></div>
+</div>
+</section>
+<section id="block-9-kaplan-meier-survival-plot">
+<h2>Block 9: Kaplan-Meier Survival Plot<a class="headerlink" href="#block-9-kaplan-meier-survival-plot" title="Link to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create a Kaplan-Meier survival plot with risk tables</span>
+<span class="k">sts graph</span>,<span class="k"> by</span>(donor) fail per(<span class="m">100</span>) xlab(<span class="m">0</span>(<span class="m">3</span>)<span class="m">15</span>) ylab(<span class="m">0</span>(<span class="m">10</span>)<span class="m">40</span>,<span class="k"> format</span>(<span class="nx">%2.0f</span>)) tmax(<span class="m">15</span>) risktable(, color(stc1) group(<span class="m">1</span>)<span class="k"> order</span>(<span class="m">3</span> <span class="s">&quot; &quot;</span> <span class="m">2</span> <span class="s">&quot; &quot;</span> <span class="m">1</span> <span class="s">&quot; &quot;</span>) ti(<span class="s">&quot;#&quot;</span>)) risktable(, color(stc2) group(<span class="m">2</span>)) risktable(, color(stc3) group(<span class="m">3</span>)) legend(on ring(<span class="m">0</span>) pos(<span class="m">11</span>)<span class="k"> order</span>(<span class="m">3</span> <span class="m">2</span> <span class="m">1</span>)<span class="k"> lab</span>(<span class="m">3</span> <span class="s">&quot;General population&quot;</span>)<span class="k"> lab</span>(<span class="m">2</span> <span class="s">&quot;Healthy nondonor&quot;</span>)<span class="k"> lab</span>(<span class="m">1</span> <span class="s">&quot;Living donor&quot;</span>)) ti(<span class="s">&quot;Morte&quot;</span>) text(<span class="nv">`don5y&#39;</span> <span class="m">5</span> <span class="s">&quot;</span><span class="nv">`don5y&#39;</span><span class="s">%&quot;</span>, col(stc1)) text(<span class="nv">`don12y&#39;</span> <span class="m">12</span> <span class="s">&quot;</span><span class="nv">`don12y&#39;</span><span class="s">%&quot;</span>, col(stc1)) text(<span class="nv">`don15y&#39;</span> <span class="m">15</span> <span class="s">&quot;</span><span class="nv">`don15y&#39;</span><span class="s">%&quot;</span>, col(stc1)) text(<span class="nv">`hnd5y&#39;</span> <span class="m">5</span> <span class="s">&quot;</span><span class="nv">`hnd5y&#39;</span><span class="s">%&quot;</span>, col(stc2)) text(<span class="nv">`hnd12y&#39;</span> <span class="m">12</span> <span class="s">&quot;</span><span class="nv">`hnd12y&#39;</span><span class="s">%&quot;</span>, col(stc2)) text(<span class="nv">`hnd15y&#39;</span> <span class="m">15</span> <span class="s">&quot;</span><span class="nv">`hnd15y&#39;</span><span class="s">%&quot;</span>, col(stc2)) text(<span class="nv">`gpop5y&#39;</span> <span class="m">5</span> <span class="s">&quot;</span><span class="nv">`gpop5y&#39;</span><span class="s">%&quot;</span>, col(stc3)) text(<span class="nv">`gpop12y&#39;</span> <span class="m">12</span> <span class="s">&quot;</span><span class="nv">`gpop12y&#39;</span><span class="s">%&quot;</span>, col(stc3)) text(<span class="nv">`gpop15y&#39;</span> <span class="m">15</span> <span class="s">&quot;</span><span class="nv">`gpop15y&#39;</span><span class="s">%&quot;</span>, col(stc3))
+</pre></div>
+</div>
+</section>
+<section id="block-10-export-graph">
+<h2>Block 10: Export Graph<a class="headerlink" href="#block-10-export-graph" title="Link to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Export the survival plot as a PNG file</span>
+<span class="k">graph</span> export <span class="vg">${dir}</span><span class="o">/</span>jamascript<span class="m">.</span>png,<span class="k"> replace</span>
+</pre></div>
+</div>
+</section>
+<section id="block-11-save-processed-data">
+<h2>Block 11: Save Processed Data<a class="headerlink" href="#block-11-save-processed-data" title="Link to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Keep relevant variables for further analysis</span>
+<span class="k">keep</span> _<span class="o">*</span> entry age_t0 female race donor
+<span class="k">rename</span> age_t0 age
+
+<span class="c1">// Save the processed dataset</span>
+<span class="k">save</span> <span class="vg">${dir}</span><span class="o">//</span>jamascript<span class="m">.</span>dta,<span class="k"> replace</span>
+</pre></div>
+</div>
+</section>
+<section id="block-12-cox-proportional-hazards-model">
+<h2>Block 12: Cox Proportional Hazards Model<a class="headerlink" href="#block-12-cox-proportional-hazards-model" title="Link to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Fit a Cox proportional hazards model</span>
+<span class="k">noi stcox</span> i<span class="m">.</span>donor, basesurv(s0)
+
+<span class="c1">// List the baseline survival estimates</span>
+<span class="k">noi list</span> s0 _t donor<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">10</span>
+</pre></div>
+</div>
+</section>
+<section id="block-13-save-baseline-survival-and-coefficients">
+<h2>Block 13: Save Baseline Survival and Coefficients<a class="headerlink" href="#block-13-save-baseline-survival-and-coefficients" title="Link to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define matrix &#39;b&#39; with model coefficients</span>
+<span class="k">matrix</span> define b =<span class="k"> e</span>(b)
+
+<span class="c1">// Keep baseline survival estimates</span>
+<span class="k">keep</span> s0 _t 
+
+<span class="c1">// Sort and list baseline survival estimates</span>
+<span class="k">sort</span> _t s0
+<span class="k">list in</span> <span class="m">1</span><span class="o">/</span><span class="m">10</span>
+
+<span class="c1">// Save baseline survival estimates</span>
+<span class="k">save</span> <span class="vg">${dir}</span><span class="o">/</span>s0<span class="m">.</span>dta,<span class="k"> replace</span>
+export delimited using <span class="vg">${dir}</span><span class="o">/</span>s0<span class="m">.</span>csv,<span class="k"> replace</span>
+
+<span class="c1">// Save model coefficients</span>
+<span class="k">matrix</span> beta =<span class="k"> e</span>(b)
+<span class="k">svmat</span> beta
+<span class="k">keep</span> beta<span class="o">*</span>
+<span class="k">drop if</span> <span class="nf">missing</span>(beta1)
+<span class="k">list</span> 
+<span class="k">save</span> <span class="vg">${dir}</span><span class="o">/</span>b<span class="m">.</span>dta,<span class="k"> replace</span>
+export delimited using <span class="vg">${dir}</span><span class="o">/</span>b<span class="m">.</span>csv,<span class="k"> replace</span>
+</pre></div>
+</div>
+</section>
+<section id="block-14-close-log-file">
+<h2>Block 14: Close Log File<a class="headerlink" href="#block-14-close-log-file" title="Link to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">// Close the log file</span>
+<span class="k">log close</span>
+</pre></div>
+</div>
+<p>You can run these blocks sequentially in your Jupyter Notebook with the Stata kernel. Each block should perform a distinct part of the analysis, making it easier to debug and understand the workflow.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "stata"
+        },
+        kernelOptions: {
+            name: "stata",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'stata'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter4.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">4 Python</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-1-setup-and-logging">Block 1: Setup and Logging</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-2-define-globals">Block 2: Define Globals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-3-load-data">Block 3: Load Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-4-initial-data-exploration">Block 4: Initial Data Exploration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-5-data-cleaning-and-adjustment">Block 5: Data Cleaning and Adjustment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-6-survival-analysis-setup">Block 6: Survival Analysis Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-7-generate-kaplan-meier-estimates">Block 7: Generate Kaplan-Meier Estimates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-8-summarize-failure-rates">Block 8: Summarize Failure Rates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-9-kaplan-meier-survival-plot">Block 9: Kaplan-Meier Survival Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-10-export-graph">Block 10: Export Graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-11-save-processed-data">Block 11: Save Processed Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-12-cox-proportional-hazards-model">Block 12: Cox Proportional Hazards Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-13-save-baseline-survival-and-coefficients">Block 13: Save Baseline Survival and Coefficients</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-14-close-log-file">Block 14: Close Log File</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ADM
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

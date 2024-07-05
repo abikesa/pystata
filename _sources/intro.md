@@ -1,4 +1,4 @@
-# Welcome to Stata
+# 0 Welcome
 
 Let's ensure we cover all necessary steps, including configuring VSCode to work seamlessly with your virtual environment and the Jupyter kernels. Here’s a detailed, step-by-step guide:
 

@@ -1,3 +1,5 @@
+# 1 Kernel
+
 Great! Now that we know the path to your Stata kernel is `/Users/apollo/Library/Jupyter/kernels/stata`, let's ensure the `kernel.json` file is correctly configured. Here's how you can verify and edit the `kernel.json` file:
 
 ### Step-by-Step Guide to Verify and Edit the Kernel JSON File
