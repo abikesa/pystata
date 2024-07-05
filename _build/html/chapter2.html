@@ -1,0 +1,1136 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Stata &#8212; Pystata</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Step-by-Step Guide to Set Up Stata Kernel in Jupyter Notebooks" href="chapter3.html" />
+    <link rel="prev" title="Step-by-Step Guide to Verify and Edit the Kernel JSON File" href="chapter1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://abikesa.github.io/flow/_images/jamascript.png" class="logo__image only-light" alt="Pystata - Home"/>
+    <script>document.write(`<img src="https://abikesa.github.io/flow/_images/jamascript.png" class="logo__image only-dark" alt="Pystata - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Stata
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapter1.html">Step-by-Step Guide to Verify and Edit the Kernel JSON File</a></li>
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Stata</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="chapter3.html">Step-by-Step Guide to Set Up Stata Kernel in Jupyter Notebooks</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapter4.html">Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapter2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chapter2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Stata</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Stata</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-guide-to-ensure-stata-kernel-is-properly-installed-and-recognized">Step-by-Step Guide to Ensure Stata Kernel is Properly Installed and Recognized</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-activate-the-virtual-environment">Step 1: Activate the Virtual Environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-install-jupyter-and-stata-kernel">Step 2: Install Jupyter and Stata Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-configure-stata-kernel">Step 3: Configure Stata Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-verify-kernel-installation">Step 4: Verify Kernel Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-ensure-vscode-is-properly-configured">Step 5: Ensure VSCode is Properly Configured</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-create-a-new-jupyter-notebook-in-vscode">Step 6: Create a New Jupyter Notebook in VSCode</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-steps">Troubleshooting Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-process-in-one-go">Complete Process in One Go</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-stata-kernel-sh"><code class="docutils literal notranslate"><span class="pre">./setup_stata_kernel.sh</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-script-for-setting-up-stata-kernel-in-jupyter-notebook">Complete Script for Setting Up Stata Kernel in Jupyter Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions-to-use-the-script">Instructions to Use the Script</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="stata">
+<h1>Stata<a class="headerlink" href="#stata" title="Permalink to this heading">#</a></h1>
+<p>It sounds like the Stata kernel isn’t correctly registered with Jupyter, or VSCode isn’t picking it up. Let’s go through the steps again, with a focus on ensuring the Stata kernel is properly installed and recognized.</p>
+<section id="step-by-step-guide-to-ensure-stata-kernel-is-properly-installed-and-recognized">
+<h2>Step-by-Step Guide to Ensure Stata Kernel is Properly Installed and Recognized<a class="headerlink" href="#step-by-step-guide-to-ensure-stata-kernel-is-properly-installed-and-recognized" title="Permalink to this heading">#</a></h2>
+<section id="step-1-activate-the-virtual-environment">
+<h3>Step 1: Activate the Virtual Environment<a class="headerlink" href="#step-1-activate-the-virtual-environment" title="Permalink to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Activate your virtual environment</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>~/Documents/Athena/myenv/bin/activate
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="step-2-install-jupyter-and-stata-kernel">
+<h3>Step 2: Install Jupyter and Stata Kernel<a class="headerlink" href="#step-2-install-jupyter-and-stata-kernel" title="Permalink to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Install Jupyter and Stata Kernel</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>jupyter<span class="w"> </span>stata_kernel
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="step-3-configure-stata-kernel">
+<h3>Step 3: Configure Stata Kernel<a class="headerlink" href="#step-3-configure-stata-kernel" title="Permalink to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Configure the Stata Kernel</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>stata_kernel.install
+</pre></div>
+</div>
+<p>During this process, you’ll need to provide the path to your Stata executable. For example, it might be something like <code class="docutils literal notranslate"><span class="pre">/Applications/Stata/StataMP.app/Contents/MacOS/stata-mp</span></code> or another variant depending on your Stata version.</p>
+</li>
+</ol>
+</section>
+<section id="step-4-verify-kernel-installation">
+<h3>Step 4: Verify Kernel Installation<a class="headerlink" href="#step-4-verify-kernel-installation" title="Permalink to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Check the installed Jupyter kernels</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>kernelspec<span class="w"> </span>list
+</pre></div>
+</div>
+<p>You should see an entry for <code class="docutils literal notranslate"><span class="pre">stata</span></code>. If not, the installation process didn’t complete correctly.</p>
+</li>
+</ol>
+</section>
+<section id="step-5-ensure-vscode-is-properly-configured">
+<h3>Step 5: Ensure VSCode is Properly Configured<a class="headerlink" href="#step-5-ensure-vscode-is-properly-configured" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Install Python and Jupyter Extensions in VSCode</strong>:</p>
+<ul class="simple">
+<li><p>Open VSCode.</p></li>
+<li><p>Go to the Extensions view by clicking the Extensions icon in the Activity Bar on the side of the window or by pressing <code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+X</span></code>.</p></li>
+<li><p>Search for and install the following extensions:</p>
+<ul>
+<li><p>Python</p></li>
+<li><p>Jupyter</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Configure VSCode to Use the Virtual Environment</strong>:</p>
+<ul class="simple">
+<li><p>Open your project folder in VSCode.</p></li>
+<li><p>Press <code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+P</span></code> to open the command palette.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">Python:</span> <span class="pre">Select</span> <span class="pre">Interpreter</span></code> and select the Python interpreter from your virtual environment. It should be something like <code class="docutils literal notranslate"><span class="pre">/Users/apollo/Documents/Athena/myenv/bin/python</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Restart VSCode</strong> to ensure all changes take effect.</p></li>
+</ol>
+</section>
+<section id="step-6-create-a-new-jupyter-notebook-in-vscode">
+<h3>Step 6: Create a New Jupyter Notebook in VSCode<a class="headerlink" href="#step-6-create-a-new-jupyter-notebook-in-vscode" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Create a New Jupyter Notebook</strong>:</p>
+<ul class="simple">
+<li><p>Press <code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+P</span></code> to open the command palette.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">Jupyter:</span> <span class="pre">Create</span> <span class="pre">New</span> <span class="pre">Blank</span> <span class="pre">Notebook</span></code> and create a new notebook.</p></li>
+</ul>
+</li>
+<li><p><strong>Select the Stata Kernel</strong>:</p>
+<ul class="simple">
+<li><p>In the new notebook, click on the kernel name at the top right (it might initially say Python or R).</p></li>
+<li><p>Select the Stata kernel from the list. If Stata doesn’t appear, click on “Select Another Kernel” and see if it appears in the full list.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="troubleshooting-steps">
+<h2>Troubleshooting Steps<a class="headerlink" href="#troubleshooting-steps" title="Permalink to this heading">#</a></h2>
+<p>If the Stata kernel still doesn’t appear, let’s manually verify and troubleshoot:</p>
+<ol class="arabic">
+<li><p><strong>Manually Check the Kernel JSON File</strong>:</p>
+<ul>
+<li><p>Locate the kernel JSON file. It should be in a directory like <code class="docutils literal notranslate"><span class="pre">~/.local/share/jupyter/kernels/stata/</span></code> or <code class="docutils literal notranslate"><span class="pre">/usr/local/share/jupyter/kernels/stata/</span></code>.</p></li>
+<li><p>The JSON file should look something like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;argv&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;python&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;-m&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;stata_kernel&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;-f&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;{connection_file}&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Stata&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;language&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;stata&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Manually Register the Kernel</strong>:</p>
+<ul class="simple">
+<li><p>If the kernel JSON file is missing or incorrect, you can manually create or edit it in the appropriate directory.</p></li>
+</ul>
+</li>
+<li><p><strong>Verify Kernel Installation</strong>:</p>
+<ul>
+<li><p>Run the following command to manually add the Stata kernel:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>stata_kernel.install
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="complete-process-in-one-go">
+<h2>Complete Process in One Go<a class="headerlink" href="#complete-process-in-one-go" title="Permalink to this heading">#</a></h2>
+<ol class="arabic">
+<li><p><strong>Activate Virtual Environment</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>~/Documents/Athena/myenv/bin/activate
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install Necessary Packages</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>jupyter<span class="w"> </span>stata_kernel
+</pre></div>
+</div>
+</li>
+<li><p><strong>Configure Stata Kernel</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>stata_kernel.install
+</pre></div>
+</div>
+</li>
+<li><p><strong>Verify Installation</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>kernelspec<span class="w"> </span>list
+</pre></div>
+</div>
+</li>
+<li><p><strong>Configure VSCode</strong>:</p>
+<ul class="simple">
+<li><p>Install Python and Jupyter extensions.</p></li>
+<li><p>Select the virtual environment interpreter.</p></li>
+<li><p>Restart VSCode.</p></li>
+</ul>
+</li>
+<li><p><strong>Create and Test Jupyter Notebook</strong>:</p>
+<ul class="simple">
+<li><p>Create a new Jupyter Notebook in VSCode.</p></li>
+<li><p>Select the Stata kernel.</p></li>
+</ul>
+</li>
+</ol>
+<p>Following these steps should help ensure that the Stata kernel is properly installed and recognized in VSCode. If you encounter any specific errors or issues, please provide the details so I can assist you further.</p>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">qui</span> {
+<span class="k">capture log close</span> 
+<span class="k">log</span> using jamascript<span class="m">.</span>log,<span class="k"> replace</span> 
+<span class="k">global</span> repo https:<span class="o">//</span>github<span class="m">.</span>com<span class="o">/</span>muzaale<span class="o">/</span>forum<span class="o">/</span>raw<span class="o">/</span>main<span class="o">/</span> 
+<span class="k">global dir</span> <span class="o">~/</span>documents<span class="o">/</span>rhythm<span class="o">/</span>local
+<span class="c1">// cls; some commands don&#39;t work outside Stata!!</span>
+<span class="cm">/*noi di &quot;What is your work directory?&quot; _request(workdir)</span>
+<span class="cm">if &quot;$workdir&quot; == &quot;&quot; {</span>
+<span class="cm">	di as err &quot;Please provide your work directory&quot;</span>
+<span class="cm">	exit</span>
+<span class="cm">}</span>
+<span class="cm">else {</span>
+<span class="cm">	cd $workdir</span>
+<span class="cm">	noi di &quot;jamascript is running ...&quot;</span>
+<span class="cm">}</span>
+<span class="cm">*/</span>
+<span class="k">use</span> <span class="vg">${repo}</span>esrdRisk_t02tT,<span class="k"> clear</span>
+<span class="k">tab</span> donor rSMGJcEdF_d
+<span class="k">g</span> entry = rSMGJcEdF_t0
+<span class="c1">//linkage for donors after 2011 is untrustworthy</span>
+<span class="k">replace</span> rSMGJcEdF_d=<span class="m">0</span><span class="k"> if</span> rSMGJcEdF_tT <span class="o">&gt;</span><span class="k"> d</span>(31dec2011)
+<span class="k">replace</span> rSMGJcEdF_tT =<span class="k"> d</span>(31dec2011)<span class="k"> if</span> rSMGJcEdF_tT <span class="o">&gt;</span><span class="k"> d</span>(31dec2011)
+<span class="c1">//linkage before 1994 is untrustworthy</span>
+#delimit ;
+<span class="k">replace</span> entry =<span class="k"> d</span>(01jan1994)<span class="k"> if</span>  
+    entry <span class="o">&lt;</span><span class="k"> d</span>(01jan1994) <span class="o">&amp;</span>  
+	rSMGJcEdF_tT <span class="o">&gt;</span><span class="k"> d</span>(01jan1994); 
+<span class="k">stset</span> rSMGJcEdF_tT,  
+    origin(rSMGJcEdF_t0)  
+	entry(<span class="nv">`entry&#39;</span>)  
+	fail(rSMGJcEdF_d<span class="o">==</span><span class="m">2</span>)  
+	scale(<span class="m">365.25</span>); 
+#delimit cr 
+<span class="k">sts list</span>, fail<span class="k"> by</span>(donor) at(<span class="m">5</span> <span class="m">12</span> <span class="m">15</span>) saving(km,<span class="k"> replace</span> ) 
+<span class="k">preserve</span>  
+<span class="k">    use</span> km,<span class="k"> clear</span>  
+<span class="k">	replace</span> failure=failure<span class="o">*</span><span class="m">100</span>
+<span class="k">    sum</span> failure<span class="k"> if</span> donor<span class="o">==</span><span class="m">1</span> <span class="o">&amp;</span> time<span class="o">==</span><span class="m">5</span>
+<span class="k">	local</span> don5y:<span class="k"> di</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(mean)
+<span class="k">    sum</span> failure<span class="k"> if</span> donor<span class="o">==</span><span class="m">1</span> <span class="o">&amp;</span> time<span class="o">==</span><span class="m">12</span>
+<span class="k">	local</span> don12y:<span class="k"> di</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(mean)
+<span class="k">	sum</span> failure<span class="k"> if</span> donor<span class="o">==</span><span class="m">1</span> <span class="o">&amp;</span> time<span class="o">==</span><span class="m">15</span>
+<span class="k">	local</span> don15y:<span class="k"> di</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(mean)
+	<span class="c1">//</span>
+<span class="k">    sum</span> failure<span class="k"> if</span> donor<span class="o">==</span><span class="m">2</span> <span class="o">&amp;</span> time<span class="o">==</span><span class="m">5</span>
+<span class="k">	local</span> hnd5y:<span class="k"> di</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(mean)
+<span class="k">    sum</span> failure<span class="k"> if</span> donor<span class="o">==</span><span class="m">2</span> <span class="o">&amp;</span> time<span class="o">==</span><span class="m">12</span>
+<span class="k">	local</span> hnd12y:<span class="k"> di</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(mean)
+<span class="k">	sum</span> failure<span class="k"> if</span> donor<span class="o">==</span><span class="m">2</span> <span class="o">&amp;</span> time<span class="o">==</span><span class="m">15</span>
+<span class="k">	local</span> hnd15y:<span class="k"> di</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(mean)
+	<span class="c1">//</span>
+<span class="k">    sum</span> failure<span class="k"> if</span> donor<span class="o">==</span><span class="m">3</span> <span class="o">&amp;</span> time<span class="o">==</span><span class="m">5</span>
+<span class="k">	local</span> gpop5y:<span class="k"> di</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(mean)
+<span class="k">    sum</span> failure<span class="k"> if</span> donor<span class="o">==</span><span class="m">3</span> <span class="o">&amp;</span> time<span class="o">==</span><span class="m">12</span>
+<span class="k">	local</span> gpop12y:<span class="k"> di</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(mean)
+<span class="k">	sum</span> failure<span class="k"> if</span> donor<span class="o">==</span><span class="m">3</span> <span class="o">&amp;</span> time<span class="o">==</span><span class="m">15</span>
+<span class="k">	local</span> gpop15y:<span class="k"> di</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(mean)
+<span class="k">restore</span> 
+#delimit ;
+<span class="k">sts graph</span>, 
+<span class="k">    by</span>(donor)  
+    fail 
+	per(<span class="m">100</span>)  
+	xlab(<span class="m">0</span>(<span class="m">3</span>)<span class="m">15</span>) 
+	ylab(<span class="m">0</span>(<span class="m">10</span>)<span class="m">40</span>,  
+<span class="k">	    format</span>(<span class="nx">%2.0f</span>))  
+	tmax(<span class="m">15</span>)  
+	risktable(, color(stc1) group (<span class="m">1</span>)  
+<span class="k">	    order</span>(<span class="m">3</span> <span class="s">&quot; &quot;</span> <span class="m">2</span> <span class="s">&quot; &quot;</span> <span class="m">1</span> <span class="s">&quot; &quot;</span>)  
+		ti(<span class="s">&quot;#&quot;</span>)  
+	) 
+	risktable(, color(stc2) group(<span class="m">2</span>))  
+	risktable(, color(stc3) group(<span class="m">3</span>))  
+	legend(on 
+	ring(<span class="m">0</span>)  
+	    pos(<span class="m">11</span>)  
+<span class="k">	   order</span>(<span class="m">3</span> <span class="m">2</span> <span class="m">1</span>)  
+<span class="k">	   lab</span>(<span class="m">3</span> <span class="s">&quot;General population&quot;</span>)  
+<span class="k">	   lab</span>(<span class="m">2</span> <span class="s">&quot;Healthy nondonor&quot;</span>)  
+<span class="k">	   lab</span>(<span class="m">1</span> <span class="s">&quot;Living donor&quot;</span>)  
+	)  
+	ti(<span class="s">&quot;Morte&quot;</span>)  
+	text(<span class="nv">`don5y&#39;</span> <span class="m">5</span> <span class="s">&quot;</span><span class="nv">`don5y&#39;</span><span class="s">%&quot;</span>, col(stc1))  
+	text(<span class="nv">`don12y&#39;</span> <span class="m">12</span> <span class="s">&quot;</span><span class="nv">`don12y&#39;</span><span class="s">%&quot;</span>, col(stc1))  
+	text(<span class="nv">`don15y&#39;</span> <span class="m">15</span> <span class="s">&quot;</span><span class="nv">`don15y&#39;</span><span class="s">%&quot;</span>, col(stc1))  
+	text(<span class="nv">`hnd5y&#39;</span> <span class="m">5</span> <span class="s">&quot;</span><span class="nv">`hnd5y&#39;</span><span class="s">%&quot;</span>, col(stc2))  
+	text(<span class="nv">`hnd12y&#39;</span> <span class="m">12</span> <span class="s">&quot;</span><span class="nv">`hnd12y&#39;</span><span class="s">%&quot;</span>, col(stc2)) 
+	text(<span class="nv">`hnd15y&#39;</span> <span class="m">15</span> <span class="s">&quot;</span><span class="nv">`hnd15y&#39;</span><span class="s">%&quot;</span>, col(stc2))  
+	text(<span class="nv">`gpop5y&#39;</span> <span class="m">5</span> <span class="s">&quot;</span><span class="nv">`gpop5y&#39;</span><span class="s">%&quot;</span>, col(stc3))  
+	text(<span class="nv">`gpop12y&#39;</span> <span class="m">12</span> <span class="s">&quot;</span><span class="nv">`gpop12y&#39;</span><span class="s">%&quot;</span>, col(stc3))  
+	text(<span class="nv">`gpop15y&#39;</span> <span class="m">15</span> <span class="s">&quot;</span><span class="nv">`gpop15y&#39;</span><span class="s">%&quot;</span>, col(stc3));
+#delimit cr
+
+<span class="k">graph</span> export <span class="vg">${dir}</span><span class="o">/</span>jamascript<span class="m">.</span>png,<span class="k"> replace</span> 
+<span class="k">keep</span> _<span class="o">*</span> entry age_t0 female race donor
+<span class="k">rename</span> age_t0 age
+<span class="c1">//dataset</span>
+<span class="k">save</span> <span class="vg">${dir}</span><span class="o">//</span>jamascript<span class="m">.</span>dta,<span class="k"> replace</span> 
+<span class="k">noi stcox</span> i<span class="m">.</span>donor, basesurv(s0)
+<span class="k">noi list</span> s0 _t donor<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">10</span>
+<span class="k">matrix</span> define b=<span class="nf">e</span>(b)
+<span class="k">keep</span> s0 _t 
+<span class="c1">//s0</span>
+<span class="k">sort</span> _t s0
+<span class="k">list in</span> <span class="m">1</span><span class="o">/</span><span class="m">10</span>
+<span class="k">save</span> <span class="vg">${dir}</span><span class="o">/</span>s0<span class="m">.</span>dta,<span class="k"> replace</span> 
+export delimited using <span class="vg">${dir}</span><span class="o">/</span>s0<span class="m">.</span>csv,<span class="k"> replace</span> 
+<span class="k">matrix</span> beta =<span class="k"> e</span>(b)
+<span class="k">svmat</span> beta 
+<span class="k">keep</span> beta<span class="o">*</span>
+<span class="k">drop if</span> <span class="nf">missing</span>(beta1)
+<span class="c1">//betas</span>
+<span class="k">list</span> 
+<span class="k">save</span> b<span class="m">.</span>dta,<span class="k"> replace</span> 
+export delimited using <span class="vg">${dir}</span><span class="o">/</span>b<span class="m">.</span>csv,<span class="k"> replace</span> 
+<span class="k">log close</span> 
+<span class="c1">//noi ls</span>
+} 
+ 
+</pre></div>
+</div>
+</div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        Failure _d: rSMGJcEdF_d==2
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Analysis time _t: (rSMGJcEdF_tT-origin)/365.25
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Origin: time rSMGJcEdF_t0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 0:  Log likelihood = -54332.522
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 1:  Log likelihood =  -52993.14
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 2:  Log likelihood = -51472.516
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 3:  Log likelihood = -49543.907
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 4:  Log likelihood =  -49520.68
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 5:  Log likelihood = -49520.548
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 6:  Log likelihood = -49520.548
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Refining estimates:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 0:  Log likelihood = -49520.548
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cox regression with Breslow method for ties
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No. of subjects =     113,657                          Number of obs = 113,657
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No. of failures =       4,937
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time at risk    = 999,633.484
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                       LR chi2(2)    = 9623.95
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log likelihood = -49520.548                            Prob &gt; chi2   =  0.0000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------------------------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           _t | Haz. ratio   Std. err.      z    P&gt;|z|     [95% conf. interval]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------+----------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HealthyNon~r  |   4.341779   .2130915    29.92   0.000     3.943586    4.780178
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NotSoHealt~r  |   26.88098   1.007964    87.78   0.000     24.97625    28.93096
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------------------------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     +-------------------------------+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |        s0          _t   donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |-------------------------------|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1. | .98566928   11.277207   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2. | .99256749   6.8281999   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  3. | .99351642   6.1711157   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  4. | .99402483   5.6919918   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5. | .98475171   11.816564   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |-------------------------------|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  6. | .99934972   .90622861   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7. | .98705221   10.472279   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  8. |  .9879412   9.8754278   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  9. | .98766713   10.064339   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10. | .99994059   .08761123   Donor |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     +-------------------------------+
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p><img alt="" src="_images/jamascript.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="vg">${repo}</span>esrdRisk_t02tT,<span class="k"> clear</span>
+<span class="k">tab</span> donor rSMGJcEdF_d
+<span class="k">codebook</span> rSMGJcEdF_d
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Live Kidney Donors + NHANES III Nondonors, Unmatched time_tT + CMS)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                     |           rSMGJcEdF_d
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               donor |  Censored       ESRD       Died |     Total
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------+---------------------------------+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               Donor |    95,184         99        934 |    96,217 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     HealthyNondonor |     8,570         17        777 |     9,364 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NotSoHealthyNondonor |     4,694        154      3,228 |     8,076 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------+---------------------------------+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               Total |   108,448        270      4,939 |   113,657 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rSMGJcEdF_d                                                          (unlabeled)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                  Type: Numeric (byte)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Label: Neph2esrd_d
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Range: [0,2]                         Units: 1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         Unique values: 3                         Missing .: 0/113,657
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Tabulation: Freq.   Numeric  Label
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                      108,448         0  Censored
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                          270         1  ESRD
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        4,939         2  Died
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="setup-stata-kernel-sh">
+<h1><code class="docutils literal notranslate"><span class="pre">./setup_stata_kernel.sh</span></code><a class="headerlink" href="#setup-stata-kernel-sh" title="Permalink to this heading">#</a></h1>
+<p>Certainly! Below is a comprehensive script that you can run from start to finish to set up your virtual environment, install the necessary packages, configure the Stata kernel, and start Jupyter Notebook. This script ensures that the entire process is reproducible and hassle-free.</p>
+<section id="complete-script-for-setting-up-stata-kernel-in-jupyter-notebook">
+<h2>Complete Script for Setting Up Stata Kernel in Jupyter Notebook<a class="headerlink" href="#complete-script-for-setting-up-stata-kernel-in-jupyter-notebook" title="Permalink to this heading">#</a></h2>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># Set up variables</span>
+<span class="nv">VENV_PATH</span><span class="o">=</span><span class="s2">&quot;/Users/hades/Documents/hades/myenv&quot;</span>
+<span class="nv">STATA_PATH</span><span class="o">=</span><span class="s2">&quot;/Applications/Stata/StataMP.app/Contents/MacOS/stata-mp&quot;</span>
+<span class="nv">ZSHRC_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.zshrc&quot;</span>
+
+<span class="c1"># Step 1: Remove existing virtual environment if it exists</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Removing existing virtual environment...&quot;</span>
+rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$VENV_PATH</span>
+
+<span class="c1"># Step 2: Create a new virtual environment</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Creating a new virtual environment...&quot;</span>
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span><span class="nv">$VENV_PATH</span>
+
+<span class="c1"># Step 3: Activate the virtual environment</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Activating the virtual environment...&quot;</span>
+<span class="nb">source</span><span class="w"> </span><span class="nv">$VENV_PATH</span>/bin/activate
+
+<span class="c1"># Step 4: Install necessary packages</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing necessary packages...&quot;</span>
+pip<span class="w"> </span>install<span class="w"> </span>stata_kernel<span class="w"> </span>ipykernel<span class="w"> </span>setuptools<span class="w"> </span>notebook
+
+<span class="c1"># Step 5: Configure environment variable for Stata path</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Configuring environment variable for Stata path...&quot;</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-f<span class="w"> </span><span class="nv">$ZSHRC_PATH</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>touch<span class="w"> </span><span class="nv">$ZSHRC_PATH</span>
+<span class="k">fi</span>
+grep<span class="w"> </span>-qxF<span class="w"> </span><span class="s2">&quot;export STATA_KERNEL_STATA_PATH=</span><span class="nv">$STATA_PATH</span><span class="s2">&quot;</span><span class="w"> </span><span class="nv">$ZSHRC_PATH</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export STATA_KERNEL_STATA_PATH=</span><span class="nv">$STATA_PATH</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$ZSHRC_PATH</span>
+<span class="nb">source</span><span class="w"> </span><span class="nv">$ZSHRC_PATH</span>
+
+<span class="c1"># Step 6: Install the Stata kernel</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing the Stata kernel...&quot;</span>
+python<span class="w"> </span>-m<span class="w"> </span>stata_kernel.install
+
+<span class="c1"># Step 7: Start Jupyter Notebook</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Starting Jupyter Notebook...&quot;</span>
+jupyter<span class="w"> </span>notebook
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Setup complete!&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="instructions-to-use-the-script">
+<h2>Instructions to Use the Script<a class="headerlink" href="#instructions-to-use-the-script" title="Permalink to this heading">#</a></h2>
+<ol class="arabic">
+<li><p><strong>Save the Script</strong>:</p>
+<ul class="simple">
+<li><p>Save the script to a file, for example, <code class="docutils literal notranslate"><span class="pre">setup_stata_kernel.sh</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Make the Script Executable</strong>:</p>
+<ul class="simple">
+<li><p>Make the script executable by running the following command:</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>+x<span class="w"> </span>setup_stata_kernel.sh
+</pre></div>
+</div>
+</li>
+<li><p><strong>Run the Script</strong>:</p>
+<ul class="simple">
+<li><p>Run the script by executing:</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./setup_stata_kernel.sh
+</pre></div>
+</div>
+</li>
+</ol>
+<p>This script will handle the entire process of setting up the virtual environment, installing the necessary packages, configuring the environment variable, installing the Stata kernel, and starting Jupyter Notebook. This ensures a reproducible and smooth setup experience.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "stata"
+        },
+        kernelOptions: {
+            name: "stata",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'stata'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Step-by-Step Guide to Verify and Edit the Kernel JSON File</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chapter3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Step-by-Step Guide to Set Up Stata Kernel in Jupyter Notebooks</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Stata</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-guide-to-ensure-stata-kernel-is-properly-installed-and-recognized">Step-by-Step Guide to Ensure Stata Kernel is Properly Installed and Recognized</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-activate-the-virtual-environment">Step 1: Activate the Virtual Environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-install-jupyter-and-stata-kernel">Step 2: Install Jupyter and Stata Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-configure-stata-kernel">Step 3: Configure Stata Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-verify-kernel-installation">Step 4: Verify Kernel Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-ensure-vscode-is-properly-configured">Step 5: Ensure VSCode is Properly Configured</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-create-a-new-jupyter-notebook-in-vscode">Step 6: Create a New Jupyter Notebook in VSCode</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-steps">Troubleshooting Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-process-in-one-go">Complete Process in One Go</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-stata-kernel-sh"><code class="docutils literal notranslate"><span class="pre">./setup_stata_kernel.sh</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-script-for-setting-up-stata-kernel-in-jupyter-notebook">Complete Script for Setting Up Stata Kernel in Jupyter Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions-to-use-the-script">Instructions to Use the Script</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ADM
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
