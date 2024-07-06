@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  /Users/apollo/Documents/Melody/pystata/jamascript.log
   log type:  text
- opened on:   5 Jul 2024, 16:56:21
+ opened on:   5 Jul 2024, 20:20:00
 
 . use ${repo}esrdRisk_t02tT, clear
 (Live Kidney Donors + NHANES III Nondonors, Unmatched time_tT + CMS)
@@ -588,5 +588,8 @@ file /Users/apollo/documents/melody/local/b.csv saved
       name:  <unnamed>
        log:  /Users/apollo/Documents/Melody/pystata/jamascript.log
   log type:  text
- closed on:   5 Jul 2024, 16:56:25
+ closed on:   5 Jul 2024, 20:20:04
 --------------------------------------------------------------------------------
+2024-07-05 20:20:08,140 - Starting log file
+2024-07-05 20:20:08,368 - Dataset loaded successfully from local file
+2024-07-05 20:20:08,378 - New variable 'entry' created based on 'rSMGJcEdF_t0'
