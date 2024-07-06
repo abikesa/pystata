@@ -1,0 +1,71 @@
+Traceback (most recent call last):
+  File "/Users/apollo/Documents/Melody/myenv/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/apollo/Documents/Melody/myenv/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/apollo/Documents/Melody/myenv/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.3/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/apollo/Documents/Melody/myenv/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/Users/apollo/Documents/Melody/myenv/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/apollo/Documents/Melody/myenv/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+// Create a Kaplan-Meier survival plot with risk tables
+sts graph, ///
+   by(donor) ///
+   fail per(100) ///
+   xlab(0(3)15) ///
+   ylab(0(10)40, format(%2.0f)) ///
+   tmax(15) ///
+   risktable(, color(stc1) group(1) order(3 " " 2 " " 1 " ") ti("#")) ///
+   risktable(, color(stc2) group(2)) risktable(, color(stc3) group(3)) ///
+   legend(on ring(0) pos(11) order(3 2 1) lab(3 "General population") lab(2 "Healthy nondonor") lab(1 "Living donor")) ///
+   ti("Morte") text(`don5y' 5 "`don5y'%", col(stc1)) text(`don12y' 12 "`don12y'%", col(stc1)) ///
+   text(`don15y' 15 "`don15y'%", col(stc1)) ///
+   text(`hnd5y' 5 "`hnd5y'%", col(stc2)) ///
+   text(`hnd12y' 12 "`hnd12y'%", col(stc2)) ///
+   text(`hnd15y' 15 "`hnd15y'%", col(stc2)) ///
+   text(`gpop5y' 5 "`gpop5y'%", col(stc3)) ///
+   text(`gpop12y' 12 "`gpop12y'%", col(stc3)) ///
+   text(`gpop15y' 15 "`gpop15y'%", col(stc3))
+
+graph save pilot, replace 
+graph export ${dir}/pilot.png, replace 
+------------------
+
+----- stdout -----
+
+
+         Failure _d: rSMGJcEdF_d==2
+----- stdout -----
+   Analysis time _t: (rSMGJcEdF_tT-origin)/365.25
+----- stdout -----
+             Origin: time rSMGJcEdF_t0
+----- stdout -----
+  Enter on or after: time entry
+----- stdout -----
+
+file pilot.gph saved
+----- stdout -----
+
+(file ~/documents/melody/local/pilot.png not found)
+----- stdout -----
+failed to export to the specified format.
+----- stderr -----
+r(198);
+----- stderr -----
+r(198);
+----- stdout -----
+
+------------------
+
+
+
