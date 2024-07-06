@@ -1,8 +1,8 @@
 --------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  /Users/apollo/Documents/Melody/yesterday/jamascript.log
+       log:  /Users/apollo/Documents/Melody/pystata/jamascript.log
   log type:  text
- opened on:   6 Jul 2024, 04:25:55
+ opened on:   6 Jul 2024, 04:32:25
 
 . use ${repo}esrdRisk_t02tT, clear
 (Live Kidney Donors + NHANES III Nondonors, Unmatched time_tT + CMS)
@@ -354,5 +354,6 @@ r(198);
 
 . macro drop ___user_rc
 
-. 2024-07-06 04:26:01,771 - Starting log file
-2024-07-06 04:26:01,771 - File not found: /Users/apollo/documents/melody/local/esrdRisk_t02tT.csv
+. 2024-07-06 04:32:28,817 - Starting log file
+2024-07-06 04:32:29,048 - Dataset loaded successfully from local file
+2024-07-06 04:32:29,059 - New variable 'entry' created based on 'rSMGJcEdF_t0'

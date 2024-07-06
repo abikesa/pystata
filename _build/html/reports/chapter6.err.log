@@ -19,78 +19,81 @@ Traceback (most recent call last):
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
 import pandas as pd
-from lifelines import KaplanMeierFitter
-import matplotlib.pyplot as plt
 
-# Assuming 'data' is already the DataFrame loaded previously
+# Load the data
+file_path = '~/documents/melody/local/esrdRisk_t02tT.csv'  # Adjust the file path as needed
+data = pd.read_csv(file_path)
 
-# Set the event indicator based on 'Died'
-data['event'] = (data['rSMGJcEdF_d'] == 'Died').astype(int)
-
-# Ensure date columns are in datetime format
-data['rSMGJcEdF_tT'] = pd.to_datetime(data['rSMGJcEdF_tT'], errors='coerce')
-data['rSMGJcEdF_t0'] = pd.to_datetime(data['rSMGJcEdF_t0'], errors='coerce')
-data['entry'] = data['rSMGJcEdF_t0']  # Use _t0 as entry
-
-# Calculate the duration from origin to the event or censoring in years
-data['duration'] = (data['rSMGJcEdF_tT'] - data['rSMGJcEdF_t0']).dt.total_seconds() / (365.25 * 24 * 60 * 60)
-
-# Calculate the entry duration
-data['entry_duration'] = (data['entry'] - data['rSMGJcEdF_t0']).dt.total_seconds() / (365.25 * 24 * 60 * 60)
-data['entry_duration'] = data['entry_duration'].fillna(0)  # Ensure non-donor entries are set to 0
-
-# Ensure all durations are non-negative and valid
-data = data[(data['duration'] >= 0) & (data['entry_duration'] >= 0)]
-
-# Initialize the KaplanMeierFitter
-kmf = KaplanMeierFitter()
-
-# Plot setup
-plt.figure(figsize=(10, 6))
-
-# Unique donor values
-donor_values = data['donor'].unique()
-
-# Colors for each donor type
-colors = ['blue', 'green', 'red']
-
-# Overlay plots for different donor values
-for donor, color in zip(donor_values, colors):
-    kmf.fit(durations=data[data['donor'] == donor]['duration'],
-            event_observed=data[data['donor'] == donor]['event'],
-            entry=data[data['donor'] == donor]['entry_duration'],
-            label=donor)
-    ax = kmf.plot_cumulative_density(ci_show=False, color=color)
-
-# Cut off the plot at 15 years
-plt.xlim(0, 15)
-
-# Convert y-axis to percentage
-vals = ax.get_yticks()
-ax.set_yticklabels(['{:,.0%}'.format(x) for x in vals])
-
-# Labels and title
-plt.xlabel("Time (years)")
-plt.ylabel("Failure Probability (%)")
-plt.title("Failure Function Plot (Cumulative Density) by Donor Type")
-plt.legend(title="Donor Type")
-
-# Optional: Display the plot (depends on your environment)
-plt.show()
+# Check the first few rows and the column names
+print(data.head())
+print(data.columns)
 
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mTypeError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[4], line 8[0m
-[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
-[1;32m      5[0m [38;5;66;03m# Assuming 'data' is already the DataFrame loaded previously[39;00m
-[1;32m      6[0m 
-[1;32m      7[0m [38;5;66;03m# Set the event indicator based on 'Died'[39;00m
-[0;32m----> 8[0m data[[38;5;124m'[39m[38;5;124mevent[39m[38;5;124m'[39m] [38;5;241m=[39m ([43mdata[49m[43m[[49m[38;5;124;43m'[39;49m[38;5;124;43mrSMGJcEdF_d[39;49m[38;5;124;43m'[39;49m[43m][49m [38;5;241m==[39m [38;5;124m'[39m[38;5;124mDied[39m[38;5;124m'[39m)[38;5;241m.[39mastype([38;5;28mint[39m)
-[1;32m     10[0m [38;5;66;03m# Ensure date columns are in datetime format[39;00m
-[1;32m     11[0m data[[38;5;124m'[39m[38;5;124mrSMGJcEdF_tT[39m[38;5;124m'[39m] [38;5;241m=[39m pd[38;5;241m.[39mto_datetime(data[[38;5;124m'[39m[38;5;124mrSMGJcEdF_tT[39m[38;5;124m'[39m], errors[38;5;241m=[39m[38;5;124m'[39m[38;5;124mcoerce[39m[38;5;124m'[39m)
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+Cell [0;32mIn[9], line 5[0m
+[1;32m      3[0m [38;5;66;03m# Load the data[39;00m
+[1;32m      4[0m file_path [38;5;241m=[39m [38;5;124m'[39m[38;5;124m~/documents/melody/local/esrdRisk_t02tT.csv[39m[38;5;124m'[39m  [38;5;66;03m# Adjust the file path as needed[39;00m
+[0;32m----> 5[0m data [38;5;241m=[39m [43mpd[49m[38;5;241;43m.[39;49m[43mread_csv[49m[43m([49m[43mfile_path[49m[43m)[49m
+[1;32m      7[0m [38;5;66;03m# Check the first few rows and the column names[39;00m
+[1;32m      8[0m [38;5;28mprint[39m(data[38;5;241m.[39mhead())
 
-[0;31mTypeError[0m: 'NoneType' object is not subscriptable
+File [0;32m~/Documents/Melody/myenv/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1026[0m, in [0;36mread_csv[0;34m(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)[0m
+[1;32m   1013[0m kwds_defaults [38;5;241m=[39m _refine_defaults_read(
+[1;32m   1014[0m     dialect,
+[1;32m   1015[0m     delimiter,
+[0;32m   (...)[0m
+[1;32m   1022[0m     dtype_backend[38;5;241m=[39mdtype_backend,
+[1;32m   1023[0m )
+[1;32m   1024[0m kwds[38;5;241m.[39mupdate(kwds_defaults)
+[0;32m-> 1026[0m [38;5;28;01mreturn[39;00m [43m_read[49m[43m([49m[43mfilepath_or_buffer[49m[43m,[49m[43m [49m[43mkwds[49m[43m)[49m
+
+File [0;32m~/Documents/Melody/myenv/lib/python3.12/site-packages/pandas/io/parsers/readers.py:620[0m, in [0;36m_read[0;34m(filepath_or_buffer, kwds)[0m
+[1;32m    617[0m _validate_names(kwds[38;5;241m.[39mget([38;5;124m"[39m[38;5;124mnames[39m[38;5;124m"[39m, [38;5;28;01mNone[39;00m))
+[1;32m    619[0m [38;5;66;03m# Create the parser.[39;00m
+[0;32m--> 620[0m parser [38;5;241m=[39m [43mTextFileReader[49m[43m([49m[43mfilepath_or_buffer[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwds[49m[43m)[49m
+[1;32m    622[0m [38;5;28;01mif[39;00m chunksize [38;5;129;01mor[39;00m iterator:
+[1;32m    623[0m     [38;5;28;01mreturn[39;00m parser
+
+File [0;32m~/Documents/Melody/myenv/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1620[0m, in [0;36mTextFileReader.__init__[0;34m(self, f, engine, **kwds)[0m
+[1;32m   1617[0m     [38;5;28mself[39m[38;5;241m.[39moptions[[38;5;124m"[39m[38;5;124mhas_index_names[39m[38;5;124m"[39m] [38;5;241m=[39m kwds[[38;5;124m"[39m[38;5;124mhas_index_names[39m[38;5;124m"[39m]
+[1;32m   1619[0m [38;5;28mself[39m[38;5;241m.[39mhandles: IOHandles [38;5;241m|[39m [38;5;28;01mNone[39;00m [38;5;241m=[39m [38;5;28;01mNone[39;00m
+[0;32m-> 1620[0m [38;5;28mself[39m[38;5;241m.[39m_engine [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_make_engine[49m[43m([49m[43mf[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mengine[49m[43m)[49m
+
+File [0;32m~/Documents/Melody/myenv/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1880[0m, in [0;36mTextFileReader._make_engine[0;34m(self, f, engine)[0m
+[1;32m   1878[0m     [38;5;28;01mif[39;00m [38;5;124m"[39m[38;5;124mb[39m[38;5;124m"[39m [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m mode:
+[1;32m   1879[0m         mode [38;5;241m+[39m[38;5;241m=[39m [38;5;124m"[39m[38;5;124mb[39m[38;5;124m"[39m
+[0;32m-> 1880[0m [38;5;28mself[39m[38;5;241m.[39mhandles [38;5;241m=[39m [43mget_handle[49m[43m([49m
+[1;32m   1881[0m [43m    [49m[43mf[49m[43m,[49m
+[1;32m   1882[0m [43m    [49m[43mmode[49m[43m,[49m
+[1;32m   1883[0m [43m    [49m[43mencoding[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mencoding[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;28;43;01mNone[39;49;00m[43m)[49m[43m,[49m
+[1;32m   1884[0m [43m    [49m[43mcompression[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mcompression[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;28;43;01mNone[39;49;00m[43m)[49m[43m,[49m
+[1;32m   1885[0m [43m    [49m[43mmemory_map[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mmemory_map[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;28;43;01mFalse[39;49;00m[43m)[49m[43m,[49m
+[1;32m   1886[0m [43m    [49m[43mis_text[49m[38;5;241;43m=[39;49m[43mis_text[49m[43m,[49m
+[1;32m   1887[0m [43m    [49m[43merrors[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mencoding_errors[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mstrict[39;49m[38;5;124;43m"[39;49m[43m)[49m[43m,[49m
+[1;32m   1888[0m [43m    [49m[43mstorage_options[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mstorage_options[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;28;43;01mNone[39;49;00m[43m)[49m[43m,[49m
+[1;32m   1889[0m [43m[49m[43m)[49m
+[1;32m   1890[0m [38;5;28;01massert[39;00m [38;5;28mself[39m[38;5;241m.[39mhandles [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m
+[1;32m   1891[0m f [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mhandles[38;5;241m.[39mhandle
+
+File [0;32m~/Documents/Melody/myenv/lib/python3.12/site-packages/pandas/io/common.py:873[0m, in [0;36mget_handle[0;34m(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)[0m
+[1;32m    868[0m [38;5;28;01melif[39;00m [38;5;28misinstance[39m(handle, [38;5;28mstr[39m):
+[1;32m    869[0m     [38;5;66;03m# Check whether the filename is to be opened in binary mode.[39;00m
+[1;32m    870[0m     [38;5;66;03m# Binary mode does not support 'encoding' and 'newline'.[39;00m
+[1;32m    871[0m     [38;5;28;01mif[39;00m ioargs[38;5;241m.[39mencoding [38;5;129;01mand[39;00m [38;5;124m"[39m[38;5;124mb[39m[38;5;124m"[39m [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m ioargs[38;5;241m.[39mmode:
+[1;32m    872[0m         [38;5;66;03m# Encoding[39;00m
+[0;32m--> 873[0m         handle [38;5;241m=[39m [38;5;28;43mopen[39;49m[43m([49m
+[1;32m    874[0m [43m            [49m[43mhandle[49m[43m,[49m
+[1;32m    875[0m [43m            [49m[43mioargs[49m[38;5;241;43m.[39;49m[43mmode[49m[43m,[49m
+[1;32m    876[0m [43m            [49m[43mencoding[49m[38;5;241;43m=[39;49m[43mioargs[49m[38;5;241;43m.[39;49m[43mencoding[49m[43m,[49m
+[1;32m    877[0m [43m            [49m[43merrors[49m[38;5;241;43m=[39;49m[43merrors[49m[43m,[49m
+[1;32m    878[0m [43m            [49m[43mnewline[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m    879[0m [43m        [49m[43m)[49m
+[1;32m    880[0m     [38;5;28;01melse[39;00m:
+[1;32m    881[0m         [38;5;66;03m# Binary mode[39;00m
+[1;32m    882[0m         handle [38;5;241m=[39m [38;5;28mopen[39m(handle, ioargs[38;5;241m.[39mmode)
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '/Users/apollo/documents/melody/local/esrdRisk_t02tT.csv'
 
